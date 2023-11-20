@@ -18,7 +18,7 @@ services:
   postgres:
     image: postgres:15.3
     ports:
-      - "5433:5433"
+      - "9999:9999"
     environment:
       - POSTGRES_PASSWORD=petclinic
       - POSTGRES_USER=petclinic
