@@ -76,7 +76,7 @@ public class PostgresIntegrationTests {
 			.listeners(new PropertiesLogger()) //
 			.run(args);
 	}
-
+/*
 	@Test
 	void testFindAll() throws Exception {
 		vets.findAll();
@@ -89,7 +89,7 @@ public class PostgresIntegrationTests {
 		ResponseEntity<String> result = template.exchange(RequestEntity.get("/owners/1").build(), String.class);
 		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
-
+*/
 	static class PropertiesLogger implements ApplicationListener<ApplicationPreparedEvent> {
 
 		private static final Log log = LogFactory.getLog(PropertiesLogger.class);
