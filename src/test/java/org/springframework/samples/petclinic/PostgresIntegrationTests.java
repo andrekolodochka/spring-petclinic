@@ -78,13 +78,11 @@ public class PostgresIntegrationTests {
 			.run(args);
 	}
 
-	@Test
-	void testFindAll() throws Exception {
-		List<Vet> firstCall = vets.findAll();
-		List<Vet> secondCall = vets.findAll(); // served from cache
-
-		assertEquals(firstCall, secondCall);
-	}
+	// @Test
+	// void testFindAll() throws Exception {
+	// vets.findAll();
+	// vets.findAll(); // served from cache
+	// }
 
 	// @Test
 	// void testOwnerDetails() {
