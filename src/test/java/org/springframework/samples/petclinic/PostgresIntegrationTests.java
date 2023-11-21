@@ -90,7 +90,6 @@ public class PostgresIntegrationTests {
 		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
-
 	static class PropertiesLogger implements ApplicationListener<ApplicationPreparedEvent> {
 
 		private static final Log log = LogFactory.getLog(PropertiesLogger.class);
