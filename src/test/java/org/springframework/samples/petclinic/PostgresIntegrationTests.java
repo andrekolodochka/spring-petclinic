@@ -78,8 +78,6 @@ public class PostgresIntegrationTests {
 			.run(args);
 	}
 
-	
-
 	@Test
 	void testFindAll() throws Exception {
 		List<Vet> firstCall = vets.findAll();
@@ -88,12 +86,13 @@ public class PostgresIntegrationTests {
 		assertEquals(firstCall, secondCall);
 	}
 
-//	@Test
-//	void testOwnerDetails() {
-//		RestTemplate template = builder.rootUri("http://localhost:" + port).build();
-//		ResponseEntity<String> result = template.exchange(RequestEntity.get("/owners/1").build(), String.class);
-//		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
-//	}
+	// @Test
+	// void testOwnerDetails() {
+	// RestTemplate template = builder.rootUri("http://localhost:" + port).build();
+	// ResponseEntity<String> result =
+	// template.exchange(RequestEntity.get("/owners/1").build(), String.class);
+	// assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+	// }
 
 	static class PropertiesLogger implements ApplicationListener<ApplicationPreparedEvent> {
 
