@@ -77,19 +77,37 @@ public class PostgresIntegrationTests {
 			.run(args);
 	}
 
-//	@Test
-//	void testFindAll() throws Exception {
-//		vets.findAll();
-//		vets.findAll(); // served from cache
-//	}
+	@Test
+	void testFindAll() throws Exception {
+		// Arrange: Prepare the data for the test if needed
 
-//	@Test
-//	void testOwnerDetails() {
-//		RestTemplate template = builder.rootUri("http://localhost:" + port).build();
-//		ResponseEntity<String> result = template.exchange(RequestEntity.get("/owners/1").build(), String.class);
-//		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
-//	}
+		// Act: Call the method under test
+		List<Vet> result1 = vets.findAll();
+		List<Vet> result2 = vets.findAll(); // served from cache
 
+		// Assert: Check the results
+		assertNotNull(result1);
+		assertNotNull(result2);
+		assertEquals(result1.size(), result2.size());
+
+		// You might also want to check that the two lists contain the same elements
+		assertTrue(result1.containsAll(result2) && result2.containsAll(result1));
+	}
+
+	@Test
+	void testOwnerDetails() {
+		RestTemplate template = builder.rootUri("http://localhost:" + port).build();
+		ResponseEntity<String> result = template.exchange(RequestEntity.get("/owners/1").build(), String.class);
+		
+		// Check the status code
+		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+		// Check the content of the response
+		String body = result.getBody();
+		assertNotNull(body);
+		// Add more assertions based on the expected content of the body
+	}
+	
 	static class PropertiesLogger implements ApplicationListener<ApplicationPreparedEvent> {
 
 		private static final Log log = LogFactory.getLog(PropertiesLogger.class);
