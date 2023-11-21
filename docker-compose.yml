@@ -16,7 +16,7 @@ services:
     profiles:
     - mysql
   postgres:
-    image: postgres:15.3
+    image: postgres:15.5
     ports:
       - "9999:9999"
     environment:
