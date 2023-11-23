@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build_and_test:
+  build_and_publish_container:
 
     runs-on: ubuntu-latest
     strategy:
