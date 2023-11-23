@@ -1,7 +1,19 @@
-FROM eclipse-temurin:17-jdk-alpine
-EXPOSE 8080
-COPY target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM eclipse-temurin:17-jdk-jammy
+ 
+WORKDIR /app
+
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:resolve
+
+COPY src ./src
+
+CMD ["./mvnw", "spring-boot:run"]
+
+# FROM eclipse-temurin:17-jdk-alpine
+# EXPOSE 8080
+# COPY target/*.jar app.jar
+# ENTRYPOINT ["java","-jar","/app.jar"]
 
 # FROM eclipse-temurin:17-jdk-jammy as base
 # WORKDIR /app
