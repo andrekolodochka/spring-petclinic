@@ -55,7 +55,7 @@ jobs:
         env:
           IMAGE_NAME: petclinictest.jfrog.io/petclinic-docker/jfrog-docker-example-image:${{ github.run_number }}
         run: |
-          ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME .
+          ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
 
     
       - name: Push Docker Image
