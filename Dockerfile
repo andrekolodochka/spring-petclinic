@@ -1,7 +1,6 @@
 FROM eclipse-temurin:17-jdk-alpine
 EXPOSE 8080
-COPY --from=build /app/target/spring-petclinic-*.jar /spring-petclinic.jar
-# COPY target/*.jar app.jar
+COPY target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 
 # FROM eclipse-temurin:17-jdk-jammy as base
