@@ -17,10 +17,6 @@ jobs:
       matrix:
         java: [ '17' ]
 
-#    outputs:
-#      artifact_name: ${{ steps.artifact_parameters.outputs.artifact_name }}
-#      artifact_path: ${{ steps.artifact_parameters.outputs.artifact_path }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -34,14 +30,6 @@ jobs:
       
       - name: Build with Maven Wrapper
         run: ./mvnw -B package
-      
-#      - name: Set artifact parameters
-#        id: artifact_parameters
-#        uses: actions/github-script@v6
-#        with:
-#          script: |
-#            core.setOutput('artifact_name', `application-jar`);
-#            core.setOutput('artifact_path', `target`);
 
       - name: Upload application jar artifact
         uses: actions/upload-artifact@v3
@@ -50,20 +38,37 @@ jobs:
           path: "/home/runner/work/spring-petclinic/spring-petclinic/target"
           if-no-files-found: error
 
-# build_publish_container:
-#    name: Container Build and Publish
 
-#    runs-on: ubuntu-latest
+  build-and-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-#    needs:
-#      - build_and_test
-    
-#    outputs:
-#      container_image: ${{ steps.container_parameters.outputs.container_name }}
-    
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v3
+      - name: Setup JFrog CLI
+        uses: jfrog/setup-jfrog-cli@v3
+        env:
+          JF_URL: ${{ secrets.JF_URL }}
+          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
 
-#      - name: Build a container
-#        run: ./mvnw spring-boot:build-image
+      - name: Build Tag and push Docker Image
+        env:
+          IMAGE_NAME: petclinictest.jfrog.io/petclinic-docker/jfrog-docker-example-image:${{ github.run_number }}
+        run: |
+          jf docker build -t $IMAGE_NAME .
+          jf docker push $IMAGE_NAME
+          
+      - name: Publish Build info With JFrog CLI
+        env:
+          # Generated and maintained by GitHub
+          JFROG_CLI_BUILD_NAME: jfrog-docker-build-example
+          # JFrog organization secret
+          JFROG_CLI_BUILD_NUMBER : ${{ github.run_number }}
+        run: |
+          # Export the build name and build nuber
+          # Collect environment variables for the build
+          jf rt build-collect-env
+          # Collect VCS details from git and add them to the build
+          jf rt build-add-git
+          # Publish build info
+          jf rt build-publish
