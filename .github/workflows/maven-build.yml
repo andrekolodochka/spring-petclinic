@@ -43,12 +43,12 @@ jobs:
 #            core.setOutput('artifact_name', `application-jar`);
 #            core.setOutput('artifact_path', `target`);
 
-#      - name: Upload application jar artifact
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: ${{ steps.artifact_parameters.outputs.artifact_name }}
-#          path: ${{ steps.artifact_parameters.outputs.artifact_path }}/petclinic.jar
-#          if-no-files-found: error
+      - name: Upload application jar artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: "spring-petclinic-3.1.0-SNAPSHOT.jar.original"
+          path: "/home/runner/work/spring-petclinic/spring-petclinic/target"
+          if-no-files-found: error
 
 # build_publish_container:
 #    name: Container Build and Publish
