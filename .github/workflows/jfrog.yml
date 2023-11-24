@@ -30,6 +30,8 @@ jobs:
 
       - name: Test connection
         run: |
+          echo $JF_URL
+          echo $JFROG_CLI_AVOID_NEW_VERSION_WARNING
           jf rt ping --url=$JF_URL --access-token=$JF_ACCESS_TOKEN
 
       - name: Build tag and Push Docker Image
