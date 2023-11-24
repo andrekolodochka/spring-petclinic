@@ -30,7 +30,7 @@ jobs:
 
       - name: Test connection
         run: |
-          jf rt ping
+          jf rt ping --url=$JF_URL --access-token=$JF_ACCESS_TOKEN
 
       - name: Build tag and Push Docker Image
         env:
