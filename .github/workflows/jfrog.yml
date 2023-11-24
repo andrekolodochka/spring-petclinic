@@ -27,6 +27,10 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
 
+      - name: Login to JFrog Container Registry
+        run: |
+          jf rc add petclinictest --url $JF_URL --access-token $JF_ACCESS_TOKEN --interactive=false
+
       - name: Build tag and Push Docker Image
         env:
           IMAGE_NAME: petclinictest.jfrog.io/petclinic-docker/jfrog-docker-example-image:${{ github.run_number }}
