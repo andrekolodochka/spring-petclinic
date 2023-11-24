@@ -29,7 +29,7 @@ jobs:
 
       - name: Login to JFrog Container Registry
         run: |
-          jf rc add petclinictest --url $JF_URL --access-token $JF_ACCESS_TOKEN --interactive=false
+          jf c add petclinictest --url $JF_URL --access-token $JF_ACCESS_TOKEN --interactive=false
 
       - name: Build tag and Push Docker Image
         env:
