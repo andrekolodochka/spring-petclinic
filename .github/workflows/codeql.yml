@@ -88,4 +88,5 @@ jobs:
       with:
         name: Code Scanning Report
         path: /home/runner/work/spring-petclinic/results/java.sarif
+        if-no-files-found: error
   

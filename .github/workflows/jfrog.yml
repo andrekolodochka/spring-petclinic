@@ -29,13 +29,6 @@ jobs:
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v3
 
-
-      - name: Test connection
-        run: |
-          echo "$JF_URL"
-          echo "$JFROG_CLI_AVOID_NEW_VERSION_WARNING"
-          jf rt ping
-
       - name: Build tag and Push Docker Image
         run: |
           jf docker build -t $IMAGE_NAME .
@@ -44,8 +37,6 @@ jobs:
       - name: Scan local Docker image with XRay
         run: |
           jf docker scan --format=json $IMAGE_NAME >> ${{ github.workspace }}/scan_results.json
-          echo "Scan results:"
-          cat ${{ github.workspace }}/scan_results.json
 
       - name: Upload JSON scan results as workflow artifact
         uses: actions/upload-artifact@v2
