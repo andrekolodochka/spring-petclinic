@@ -84,7 +84,7 @@ jobs:
       uses: peter-murray/github-security-report-action@v2
       with:
         token: ${{ secrets.SECURITY_TOKEN }}
-    - uses: actions/upload-artifact@v3.1.3
+    - uses: actions/upload-artifact@v2
       with:
         name: Code Scanning Report
         path: ${{ github.workspace }}/summary.pdf
