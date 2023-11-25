@@ -30,3 +30,16 @@ Added a new frog.yml workflow
 ## Code scanning
 Added a CodeQL workflow to scan the code. Scan results are uploaded as artifact to the [workflow run](https://github.com/andrekolodochka/spring-petclinic/actions/workflows/codeql.yml):
 ![image](https://github.com/andrekolodochka/spring-petclinic/assets/59625655/18abdfdd-75d5-4569-b890-f0a6f5df3cc4)
+
+## How to run the application
+Run the following (replace <build_number> with the build number you want to execute):
+```
+docker pull petclinictest.jfrog.io/petclinic-docker/petclinic-docker-image:<build_number>
+docker run -p 127.0.0.1:8080:8080/tcp --pull=never  petclinictest.jfrog.io/petclinic-docker/petclinic-docker-image:<build_number>
+```
+The application will be available on http://localhost:8080
+
+## Areas for improvement
+- Postgres test fail during maven build. Need to investigate why so and fix. Most likely due to Postgres configuration.
+- Running `docker pull` doesn't work with `latest` tag. Can probably fix with tagging/pushing with `petclinic-docker-image:latest` in addition to `petclinic-docker-image:${{ github.run_number }}`, but I suspect that's not how it should work as `hello-world` app picks up `latest` tag automatically
+- For some reason `docker run` downloads all dependencies and compiles the application again. Not sure what the reason is, could be because GitHub runner is ubuntu on Intel and my laptop is on M2. But with Docker it should be irrelevant... ¯\_(ツ)_/¯ 
