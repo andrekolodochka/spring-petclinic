@@ -3,18 +3,18 @@
 name: JFrog CLI Test
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
+env:
+  # JFrog platform url (for example: https://acme.jfrog.io) 
+  JF_URL: ${{ vars.JF_URL }}
+  # JFrog Platform access token
+  JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
         
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: jfrog/setup-jfrog-cli@v3
-      env:
-        # JFrog platform url (for example: https://acme.jfrog.io) 
-        JF_URL: ${{ vars.JF_URL }}
-        # JFrog Platform access token
-        JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
     - run: |
         echo "$JF_URL"
         jf rt ping
