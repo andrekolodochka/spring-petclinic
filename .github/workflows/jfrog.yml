@@ -43,15 +43,15 @@ jobs:
 
       - name: Scan local Docker image with XRay
         run: |
-          jf docker scan --format=json $IMAGE_NAME >> {{ github.workspace }}/scan_results.json
+          jf docker scan --format=json $IMAGE_NAME >> ${{ github.workspace }}/scan_results.json
           echo "Scan results:"
-          cat {{ github.workspace }}/scan_results.json
+          cat ${{ github.workspace }}/scan_results.json
 
       - name: Upload JSON scan results as workflow artifact
         uses: actions/upload-artifact@v2
         with:
           name: scan_results
-          path: {{ github.workspace }}/scan_results.json
+          path: ${{ github.workspace }}/scan_results.json
           
       - name: Publish Build info With JFrog CLI
         env:
