@@ -45,12 +45,12 @@ jobs:
         run: |
           jf docker scan --format=json $IMAGE_NAME >> {{ github.workspace }}/scan_results.json
 
-      - name: Upload JSON scan results as workflow artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: scan_results
-          path: {{ github.workspace }}/scan_results.json
-          if-no-files-found: error
+#      - name: Upload JSON scan results as workflow artifact
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: scan_results
+#          path: {{ github.workspace }}/scan_results.json
+#          if-no-files-found: error
           
       - name: Publish Build info With JFrog CLI
         env:
