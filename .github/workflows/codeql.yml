@@ -80,12 +80,12 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
-    - name: Generate Security Report
-      uses: peter-murray/github-security-report-action@v2
-      with:
-        token: ${{ secrets.SECURITY_TOKEN }}
+#    - name: Generate Security Report
+#      uses: peter-murray/github-security-report-action@v2
+#      with:
+#        token: ${{ secrets.SECURITY_TOKEN }}
     - uses: actions/upload-artifact@v2
       with:
         name: Code Scanning Report
-        path: ${{ github.workspace }}/summary.pdf
+        path: ${{ github.workspace }}/java.sarif
   
