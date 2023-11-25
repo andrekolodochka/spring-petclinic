@@ -12,7 +12,8 @@ This is a fork of Spring PetClinic Sample Application with a few changes.
   ```
 
 - The instructions for `jfrog-setup-cli` action were not quite correct, so [created a PR](https://github.com/jfrog/setup-jfrog-cli/pull/114) to update those
-- build, tag and upush the image
-- scan image with XRay, the scan results are uploaded as artifacts to each workflow run
-- publish the build to Artifactory
-4. Added concurrency to all workflows
+- The workflow will:
+  - build, tag and upush the image
+  - scan image with XRay, the scan results are uploaded as artifacts to each workflow run
+  - publish the build to Artifactory
+4. Added a CodeQL workflow to scan the code. Scan results are uploaded as artifact to the workflow run
