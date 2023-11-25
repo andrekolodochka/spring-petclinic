@@ -15,3 +15,4 @@ This is a fork of Spring PetClinic Sample Application with a few changes.
 - build, tag and upush the image
 - scan image with XRay, the scan results are uploaded as artifacts to each workflow run
 - publish the build to Artifactory
+4. Added concurrency to all workflows
