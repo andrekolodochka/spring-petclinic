@@ -7,7 +7,11 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+    
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
 env:
   JF_URL: ${{ vars.JF_URL }}
   JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
