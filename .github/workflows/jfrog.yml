@@ -12,6 +12,7 @@ env:
   JF_URL: ${{ vars.JF_URL }}
   JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
   JFROG_CLI_AVOID_NEW_VERSION_WARNING:  ${{ vars.JFROG_CLI_AVOID_NEW_VERSION_WARNING }}
+  IMAGE_NAME: petclinictest.jfrog.io/petclinic-docker/jfrog-docker-example-image:${{ github.run_number }}
 
 jobs:
   build_and_publish_container:
@@ -36,11 +37,13 @@ jobs:
           jf rt ping
 
       - name: Build tag and Push Docker Image
-        env:
-          IMAGE_NAME: petclinictest.jfrog.io/petclinic-docker/jfrog-docker-example-image:${{ github.run_number }}
         run: |
           jf docker build -t $IMAGE_NAME .
           jf docker push $IMAGE_NAME
+
+      - name: Scan local Docker image with XRay
+        run: |
+          jf docker scan $IMAGE_NAME
           
       - name: Publish Build info With JFrog CLI
         env:
