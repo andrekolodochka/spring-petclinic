@@ -8,8 +8,9 @@ This is a fork of Spring PetClinic Sample Application with a few changes.
   JF_URL: ${{ vars.JF_URL }}
   JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
   JFROG_CLI_AVOID_NEW_VERSION_WARNING:  ${{ vars.JFROG_CLI_AVOID_NEW_VERSION_WARNING }}
-  IMAGE_NAME: petclinictest.jfrog.io/petclinic-docker/petclinic-docker-image:${{ github.run_number }}```
-  
+  IMAGE_NAME: petclinictest.jfrog.io/petclinic-docker/petclinic-docker-image:${{ github.run_number }}
+  ```
+
 - The instructions for `jfrog-setup-cli` action were not quite correct, so [created a PR](https://github.com/jfrog/setup-jfrog-cli/pull/114) to update those
 - build, tag and upush the image
 - scan image with XRay, the scan results are uploaded as artifacts to each workflow run
