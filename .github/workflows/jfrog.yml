@@ -43,7 +43,7 @@ jobs:
 
       - name: Scan local Docker image with XRay
         run: |
-          jf docker scan $IMAGE_NAME
+          jf docker scan --format=json $IMAGE_NAME
           
       - name: Publish Build info With JFrog CLI
         env:
