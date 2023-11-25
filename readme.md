@@ -42,4 +42,4 @@ The application will be available on http://localhost:8080
 ## Areas for improvement
 - Postgres test fail during maven build. Need to investigate why so and fix. Most likely due to Postgres configuration.
 - Running `docker pull` doesn't work with `latest` tag. Can probably fix with tagging/pushing with `petclinic-docker-image:latest` in addition to `petclinic-docker-image:${{ github.run_number }}`, but I suspect that's not how it should work as `hello-world` app picks up `latest` tag automatically
-- For some reason `docker run` downloads all dependencies and compiles the application again. Not sure what the reason is, could be because GitHub runner is ubuntu on Intel and my laptop is on M2. But with Docker it should be irrelevant... ¯\_(ツ)_/¯ 
+- For some reason `docker run` downloads all dependencies and compiles the application again. Not sure what the reason is, could be because GitHub runner is ubuntu on Intel and my laptop is on M2. But with Docker it should be irrelevant... ¯\\_(ツ)_/¯ 
